@@ -11,6 +11,26 @@ export function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${id}`);
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const book: BookData = await response.json();
+  return {
+    title: `${book.title}`,
+    description: `${book.description}`,
+    openGraph: {
+      title: `${book.title}`,
+      description: `${book.description}`,
+      images: [book.coverImgUrl],
+    },
+  };
+}
+
 async function BookDetail({ bookId }: { bookId: string }) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`);
   if (!response.ok) {
@@ -27,7 +47,7 @@ async function BookDetail({ bookId }: { bookId: string }) {
         className={style.cover_img_container}
         style={{ backgroundImage: `url('${coverImgUrl}')` }}
       >
-        <Image alt="123" src={coverImgUrl} width={200} height={100} />
+        <Image alt={`도서 ${title}의 표지 이미지`} src={coverImgUrl} width={240} height={300} />
       </div>
       <div className={style.title}>{title}</div>
       <div className={style.subTitle}>{subTitle}</div>
