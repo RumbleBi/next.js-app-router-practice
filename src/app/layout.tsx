@@ -1,6 +1,5 @@
 import "./globals.css";
 import Link from "next/link";
-import style from "./layout.module.css";
 import { BookData } from "@/types";
 
 export default function RootLayout({
@@ -10,12 +9,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <div className={style.container}>
-          <header>
+      <body className="bg-gray-50">
+        <div className="mx-auto min-h-screen max-w-[600px] bg-white p-4 shadow-md">
+          <header className="h-[60px] text-lg font-bold leading-[60px]">
             <Link href={"/"}>📚 ONEBITE BOOKS</Link>
           </header>
-          <main>{children}</main>
+          <main className="pt-2">{children}</main>
           <Footer />
         </div>
       </body>
@@ -24,15 +23,17 @@ export default function RootLayout({
 }
 
 async function Footer() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`
+  );
   if (!response.ok) {
-    return <footer>제작 @winterlood</footer>;
+    return <footer className="py-24 text-gray-500">제작 @winterlood</footer>;
   }
   const books: BookData[] = await response.json();
   const bookCount = books.length;
 
   return (
-    <footer>
+    <footer className="py-12 text-gray-500">
       <div>제작 @winterlood</div>
       <div>{bookCount}개의 도서가 등록되어 있습니다</div>
     </footer>
