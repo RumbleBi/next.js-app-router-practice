@@ -1,25 +1,31 @@
 import type { BookData } from "@/types";
 import Link from "next/link";
-import style from "./book-item.module.css";
 import Image from "next/image";
 
 export default function BookItem({
   id,
   title,
   subTitle,
-  description,
   author,
   publisher,
   coverImgUrl,
 }: BookData) {
   return (
-    <Link href={`/book/${id}`} className={style.container}>
-      <Image alt={`도서 ${title}의 표지 이미지`} src={coverImgUrl} width={80} height={105} />
+    <Link
+      href={`/book/${id}`}
+      className="primary-sub flex gap-[15px] border-b px-[10px] py-[20px] text-black no-underline"
+    >
+      <Image
+        alt={`도서 ${title}의 표지 이미지`}
+        src={coverImgUrl}
+        width={80}
+        height={105}
+      />
       <div>
-        <div className={style.title}>{title}</div>
-        <div className={style.subTitle}>{subTitle}</div>
+        <div className="font-bold">{title}</div>
+        <div className="break-keep">{subTitle}</div>
         <br />
-        <div className={style.author}>
+        <div className="primary-main">
           {author} | {publisher}
         </div>
       </div>

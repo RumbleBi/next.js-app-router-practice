@@ -1,14 +1,12 @@
-import style from "./book-item-skeleton.module.css";
-
 export default function BookItemSkeleton() {
   return (
-    <div className={style.container}>
-      <div className={style.cover_img}></div>
-      <div className={style.info_container}>
-        <div className={style.title}></div>
-        <div className={style.subtitle}></div>
+    <div className="primary-main flex gap-[15px] border-b px-[10px] py-[20px]">
+      <div className="h-[105px] w-20 bg-slate-400"></div>
+      <div className="flex-1">
+        <div className="h-5 w-full bg-primary-main"></div>
+        <div className="h-5 w-full bg-primary-main"></div>
         <br />
-        <div className={style.author}></div>
+        <div className="h-5 w-full bg-primary-main"></div>
       </div>
     </div>
   );

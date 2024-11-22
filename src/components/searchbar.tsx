@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import style from "./serachbar.module.css";
 
 export default function Searchbar() {
   const router = useRouter();
@@ -31,9 +30,19 @@ export default function Searchbar() {
   };
 
   return (
-    <div className={style.container}>
-      <input value={search} onChange={onChangeSearch} onKeyDown={onKeyDown} />
-      <button onClick={onSubmit}>검색</button>
+    <div className="mb-5 flex gap-[10px]">
+      <input
+        value={search}
+        onChange={onChangeSearch}
+        onKeyDown={onKeyDown}
+        className="primary-main flex-1 rounded-[5px] border p-[15px]"
+      />
+      <button
+        onClick={onSubmit}
+        className="w-20 cursor-pointer rounded-[5px] border-none bg-sky-400 text-white"
+      >
+        검색
+      </button>
     </div>
   );
 }

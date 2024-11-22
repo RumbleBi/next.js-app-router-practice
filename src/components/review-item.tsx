@@ -1,15 +1,22 @@
 import { ReviewData } from "@/types";
-import style from "./review-item.module.css";
 import ReviewItemDeleteButton from "./review-item-delete-button";
 
-export default function ReviewItem({ id, content, author, createdAt, bookId }: ReviewData) {
+export default function ReviewItem({
+  id,
+  content,
+  author,
+  createdAt,
+  bookId,
+}: ReviewData) {
   return (
-    <div className={style.container}>
-      <div className={style.author}>{author}</div>
-      <div className={style.content}>{content}</div>
-      <div className={style.bottom_container}>
-        <div className={style.date}>{new Date(createdAt).toLocaleString()}</div>
-        <div className={style.delete_btn}>
+    <div className="flex flex-col gap-[5px] px-0 py-[15px]">
+      <div className="text-sm">{author}</div>
+      <div className="primary-sub rounded-[5px] px-[10px] py-[15px]">
+        {content}
+      </div>
+      <div className="primary-main flex gap-[10px] text-sm">
+        <div>{new Date(createdAt).toLocaleString()}</div>
+        <div className="cursor-pointer">
           <ReviewItemDeleteButton reviewId={id} bookId={bookId} />
         </div>
       </div>
