@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-5xl;
+  }
+}
+
+@layer components {
+  .btn-custom {
+    @apply bg-slate-400;
+  }
+  .btn-custom:hover {
+    @apply bg-slate-800;
+  }
+}
+
+@layer utilities {
+  .filter-blur {
+    filter: blur(1px);
+  }
+}
